@@ -5,7 +5,7 @@ I make this game to learn more about React and Three js.
 ## todo list
 
 - [x] Sky
-- [] Ground
+- [x] Ground
 - [] Board
     - [] Tiles
     - [] Cards
