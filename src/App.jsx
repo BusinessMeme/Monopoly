@@ -1,27 +1,28 @@
+import { useEffect } from 'react';
 import * as THREE from 'three';
-import { Physics } from '@react-three/cannon';
-import {Canvas} from '@react-three/fiber';
-import { Sky } from '@react-three/drei';
-import { Ground } from './components/Ground';
+
+import SceneInit from './lib/SceneInit';
 
 import styles from './App.module.css';
 
-function App() {    
+function App() {
+  useEffect(() => {
+    const test = new SceneInit('threeJsCanvas');
+    test.initialize();
+    test.animate();
+
+    const boxGeometry = new THREE.BoxGeometry(16, 16, 16);
+    const boxMaterial = new THREE.MeshNormalMaterial();
+    const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+
+    test.scene.add(boxMesh);
+  }, []);
 
   return (
     <div className={styles.App}>
-     <Canvas className={styles.canvas}> 
-      <Sky sunPosition={[100, 100, 20]} ></Sky>
-      <ambientLight intensity={0.5} />
-      <Physics>
-        <Ground />
-      </Physics>
-      
-      
-
-     </Canvas>
+      <canvas id='threeJsCanvas' />
     </div>
   )
 }
 
-export default App
+export default App;
